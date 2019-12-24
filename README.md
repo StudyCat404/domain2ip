@@ -8,3 +8,5 @@ optional arguments:</br>
 -p PORTS, --port PORTS                Ports to scan</br>  
 -t THREADS, --threads THREADS         Number of threads</br>  
 -o OUTPUT_FILENAME, --output OUTPUT_FILENAME Write output to a csv file
+
+<img src='Capture.PNG'>
