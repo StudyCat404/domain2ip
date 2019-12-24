@@ -9,4 +9,4 @@ optional arguments:</br>
 -t THREADS, --threads THREADS         Number of threads</br>  
 -o OUTPUT_FILENAME, --output OUTPUT_FILENAME Write output to a csv file
 
-<img src='Capture.PNG'>
+ ![Image text](https://github.com/telllpu/domain2ip/blob/master/Capture.PNG)
