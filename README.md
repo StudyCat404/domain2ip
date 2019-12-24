@@ -8,13 +8,12 @@ optional arguments:
 -p PORTS, --port PORTS                Ports to scan  
 -t THREADS, --threads THREADS         Number of threads  
 -o OUTPUT_FILENAME, --output OUTPUT_FILENAME Write output to a csv file  
-`
-def output(data):
-    data = parser(data)
-    print(data)
-    with open('subdomains.txt', 'a') as f:
-        for line in data:
-            f.write(line+"\n")
-`
+、、、
+@Override
+protected void onDestroy() {
+    EventBus.getDefault().unregister(this);
+    super.onDestroy();
+}
+、、、
 # 截图
  ![Image text](https://github.com/telllpu/domain2ip/blob/master/Capture.PNG)
