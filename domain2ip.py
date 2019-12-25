@@ -77,7 +77,7 @@ class scanner(threading.Thread):
                     sys.stdout.flush()
                 ipaddr = nslookup(domain)
                 if not ipaddr:
-                    print("None of DNS query names exist: "%(domain))
+                    print("None of DNS query names exist: %s"%(domain))
                 else:
                     httpinfo = HTTPHeaders(domain)
                     if httpinfo:
@@ -148,7 +148,7 @@ def HTTPHeaders(domain):
     except Exception as e:
         title = "Unknown"            
     
-    status_code = str(r.status_code) + ' ' + requests.status_code._codes[r.status_code][0]
+    status_code = str(r.status_code) + ' ' + requests.status_codes._codes[r.status_code][0]
     if 'server' in r.headers:
         httpserver = r.headers['server']
     else:
