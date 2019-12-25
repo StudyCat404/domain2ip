@@ -1,5 +1,5 @@
 # domain2ip
-
+批量解析子域名，获取IP地址、所在地、ISP、ASN网段、ASN描述信息、简单端口扫描、尝试获取HTTP状态码、httpserver及网页标题，并保存到csv文件方便进一步筛选目标。  
 # 使用
 domain2ip.py -h  
 optional arguments:  
