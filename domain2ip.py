@@ -142,7 +142,7 @@ def HTTPHeaders(domain):
             coding = requests.utils.get_encodings_from_content(r.text)[0]
         else:
             coding = 'utf-8'
-        html = r.text.encode(r.encoding).decode(coding)
+        html = r.text.encode(r.encoding,"ignore").decode(coding)
         soup = BeautifulSoup(html, "html.parser")
         title = soup.title.string
     except Exception as e:
