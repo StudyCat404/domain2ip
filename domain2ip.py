@@ -18,49 +18,19 @@ except ImportError:
     import queue as Queue
     
 def logo():
-#https://www.degraeve.com/img2txt.php
     print("""
-                                    ::WWWWWWWWWWWWKKWWWWKKDDDDKKDDKKKKWWKKKKKKWWWWii                
-                                    LL######WWWW##############KKGGKKKKDDDDKKKKWW##WW;;              
-                                ttEEWW####KK####KKEEEEWW##WWKK##GGKKDDLLWW##KKDDWWWWKK;;            
-                              ..jjff####WW##KKLLWW######KKKKDDWWKKKKKKLL####LLDDWW####WW            
-                              ;;ttLL##WW##KKGGWW######WW##DDDDGG##WWDDWWWWWWDDWW########tt          
-                                ffWWWW##EEKKWW############WWGGGGDD##WW##WWWWKKKKWW######KK          
-                              LL##########################WWDDDDGG##WWWWKK####KKDD########          
-                              GGEE######################KKLLGGKKWWDDWWWWffKK##KKDDKK####WW..        
-                              ffWW######################DDEEEEffffffffDDGGGG##EEGGKK######          
-                            ..########################KKfftt;;,,..,,;;jjffttDDWWDDWWWW##GG          
-                            ;;WW####################WWffjj;;::    ..,,;;;;,,;;LLWWEEKK##jj          
-                            LLEEEEKK####WW##DDffffffii;;,,::........::,,,,,,,,;;EEDDWW##;;          
-                          LL##WW##WWWW##WWjj,,,,;;,,,,,,::::......::::::,,::,,,,GGDDWW##..          
-                      ..GGLL##DDffGGDDDD,,,,,,,,;;tttt,,............::::::,,,,;;DDKKWWWWii          
-                    ffjjjj####LL,,,,;;ii;;,,,,,,;;;;,,iittii......::::::::,,,,iiWW##WW##..          
-                  ..ffKK##WW####jjii;;tt;;,,::..,,jjLLffttjjtt::::::::,,,,,,;;ff######DD            
-                      jjKK########KKttjj;;;;,,....;;ttDDDDDDjjtt,,,,,,,,,,,,;;GG######ff            
-                    ..;;KK########LLjjttii;;,,....::iiii,,ttjjii,,,,,,ttjjLLDD##WW##KKtt            
-                    ..LL##########ffjjiiii;;,,::......;;tttt,,;;..iiDDWWDDDDff##WW##LL;;            
-                      LLKKWWWW####jjjj;;ii;;;;::....::::::..,,,,::jjiiii;;EEWWWWKKDDjj..            
-                    ..DDWWWWEE##jjtttt;;ii;;;;,,....::......::::,,ii,,ttffttLLDDDDGG,,              
-                    DDDDLLEEWWGGtttttt;;;;;;;;,,,,::::::..::::..;;;;,,,,;;;;iiGGLLii                
-                  ttGGDDEEWWWW;;iitttt;;;;;;;;,,,,,,,,,,,,,,::  ;;;;,,;;;;ttiiGGff                  
-                  ttGGWWWW##ff;;;;ttjj;;;;;;,,,,,,,,,,..;;::::..ii,,,,;;ttffGGff,,                  
-                    LLKK##ff;;;;;;;;jj;;;;,,,,,,,,::::..,,tt::::ii,,;;iiffttttii::                  
-                      LLGG;;;;,,;;;;jjii;;;;,,,,;;tt::....::ttfftt;;ii,,,,..;;..,,                  
-                    ..ii,,;;,,,,,,;;;;ff;;,,,,,,::,,ffff;;,,;;iittttff  ,,  ,,  ii                  
-                ::iitt,,,,;;,,,,,,;;;;jjjj;;,,,,,,::tt;;LLLLLLffttWWtt....  ::..,,                  
-          ,,;;;;;;,,,,,,,,,,::,,,,,,,,;;jjtt;;,,::::,,ttttjjffjjtt##,,..        ,,                  
-..,,,,;;;;;;,,,,,,,,,,,,,,,,,,,,,,,,,,,,;;jjii,,,,::::,,;;jjjj;;DDDD..        ::,,                  
-;;;;;;;;;;,,,,,,,,::::::,,::::::::,,,,,,;;iiffjj,,,,,,,,;;LLEEGGjjGG          ,,;;..                
-,,,,,,,,;;;;;;,,,,::..::,,::..::::::::,,;;;;ttfffftt;;;;GGtt;;jjttii          ,,::..                
-,,::....::,,;;;;;;,,,,,,,,::..::::::::::,,,,;;ffGGKKEEDDLLLLDDffii      ..    ii..                  
-,,,,::....,,,,,,,,;;;;,,,,,,......::::..::::;;ttLLLLLLffffjjjjjj..    ,,      ,,  ..                
-,,::::::..::,,......::,,,,,,,,::::......::::;;;;jjjjjjffffjjttjjjj,,..      ..,,                    
-::::......::::............::::,,,,::::::::,,,,;;iijjffffjjjjjjffjjjjjj,,    ::;;                    
-::........::..................::::::,,::::,,,,,,,,,,,,,,,,,,,,jj;;;;;;iitt,,jj                      
-....................................,,::..::,,::,,::::::,,,,,,ii,,,,,,,,,,;;jj,,  
-
-                                                    Powerby StudyCat
-""")    
+  _____ _             _        _____      _   
+ / ____| |           | |      / ____|    | |  
+| (___ | |_ _   _  __| |_   _| |     __ _| |_ 
+ \___ \| __| | | |/ _` | | | | |    / _` | __|
+ ____) | |_| |_| | (_| | |_| | |___| (_| | |_ 
+|_____/ \__|\__,_|\__,_|\__, |\_____\__,_|\__|
+                         __/ |                
+                        |___/     
+                         
+            https://www.cnblogs.com/StudyCat/
+    
+    """)
     
 
 class scanner(threading.Thread):
@@ -77,7 +47,8 @@ class scanner(threading.Thread):
                     sys.stdout.flush()
                 ipaddr = nslookup(domain)
                 if not ipaddr:
-                    print("None of DNS query names exist: %s"%(domain))
+                    pass
+                    #print("None of DNS query names exist: %s"%(domain))
                 else:
                     httpinfo = HTTPHeaders(domain)
                     if httpinfo:
@@ -147,9 +118,12 @@ def HTTPHeaders(domain):
         else:
             html = r.text
         soup = BeautifulSoup(html, "html.parser")
-        title = soup.title.string
+        if soup.title:
+            title = soup.title.string
+        else:
+            title = ""
     except Exception as e:
-        title = "Unknown"            
+        pass         
     
     status_code = str(r.status_code) + ' ' + requests.status_codes._codes[r.status_code][0]
     if 'server' in r.headers:
@@ -164,12 +138,18 @@ def iplookup(ipaddr):
         info = ipwhois.IPWhois(ipaddr).lookup_whois()
     except Exception as e:
         return {'country':'Unknown','isp':'Unknown','asn_cidr':'Private-Use Networks','asn_description':'Private-Use Networks'}
+   # city = info['nets'][0]['city']?info['nets'][0]['city']:""   
+    city = (info['nets'][0]['city']  if(info['nets'][0]['city']) else "")     
     country = countries.get(alpha_2=info['nets'][0]['country'])
+    if city:
+        countryname = country.name +'/'+city
+    else:
+        countryname = country.name
     if info['nets'][0]['description']:
         temp = info['nets'][0]['description'].splitlines()
-        ipinfo = {'country':country.name,'isp':temp[0],'asn_cidr':info['asn_cidr'],'asn_description':info['asn_description']}
+        ipinfo = {'country':countryname,'isp':temp[0],'asn_cidr':info['asn_cidr'],'asn_description':info['asn_description']}
     else:
-        ipinfo = {'country':country.name,'isp':'Not Found','asn_cidr':info['asn_cidr'],'asn_description':info['asn_description']}
+        ipinfo = {'country':countryname,'isp':'Not Found','asn_cidr':info['asn_cidr'],'asn_description':info['asn_description']}
     return ipinfo
 
 def do_telnet(ip,port):
@@ -190,7 +170,7 @@ def get_args():
     parser.add_argument('-p', '--port', help='Ports to scan', dest='ports', required=False,default="80,443")
     parser.add_argument('-t', '--threads', help='Number of threads', dest='threads', required=False, type=int, default=8)
     parser.add_argument('-o', '--output', help="Write output to a csv file", dest='output_filename', required=False,default="output.csv")
-    #parser.add_argument('-v', '--verbose', action="store_true", default=False, help='Verbose mode', dest='verbose', required=False)
+    parser.add_argument('-w3', '--www', action="store_true", default=False, help='Add www to domain', dest='w3', required=False)
     args = parser.parse_args()     
 
 def main():
@@ -210,7 +190,10 @@ def main():
             domain_list = file.read().splitlines()
             print("Adding domains to queue,total: %d" %(len(domain_list)))
             for domain in domain_list:
-                queue.put(domain)
+                if args.w3:
+                    queue.put('www.'+domain)
+                else:
+                    queue.put(domain)
     else:
         print("%s not found!" %(domain_file))
         sys.exit(1)
